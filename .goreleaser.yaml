@@ -2,7 +2,7 @@
 # Make sure to check the documentation at https://goreleaser.com
 before:
   hooks:
-    - go run github.com/99designs/gqlgen init
+    - go run github.com/99designs/gqlgen generate
     - go mod tidy
     - go generate ./...
     -
