@@ -6,6 +6,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// GinContextKey is the key used to store the gin context in the request context
+const GinContextKey = "ginContext"
+
+// GinContextFromContext returns the gin context from the context
 func GinContextFromContext(ctx context.Context) (*gin.Context, error) {
 	ginContext := ctx.Value(GinContextKey)
 	if ginContext == nil {
