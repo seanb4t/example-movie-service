@@ -57,6 +57,10 @@ kos:
 
     repository: ghcr.io/seanb4t/example-movie-service
 
+    sbom: spdx
+    bare: true
+
+
 
 gomod:
   proxy: true
