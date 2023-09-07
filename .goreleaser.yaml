@@ -24,7 +24,7 @@ builds:
 kos:
   - id: ko-build
     build: main
-    main: ./server.go
+    main: .
     # Platforms to build and publish.
     #
     # Default: 'linux/amd64'
