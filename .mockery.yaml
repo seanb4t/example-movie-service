@@ -1,0 +1,4 @@
+# .mockery.yaml
+
+with-expecter: true
+packages: {}

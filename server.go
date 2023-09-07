@@ -12,6 +12,7 @@ import (
 	"github.com/seanb4t/example-movie-service/graph"
 	"github.com/seanb4t/example-movie-service/internal"
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
+	"go.opentelemetry.io/otel/sdk/trace"
 )
 
 // Logger is the global logger
@@ -72,6 +73,12 @@ func main() {
 	log.Info().Msg("Starting server")
 
 	// Setup Gin
+	r := setupRouter(tracerProvider)
+	r.Run()
+}
+
+// setupRouter Creates and configures the main router
+func setupRouter(tracerProvider *trace.TracerProvider) *gin.Engine {
 	r := gin.New()
 	r.Use(gin.Recovery())
 	r.Use(requestid.New())
@@ -84,7 +91,8 @@ func main() {
 			return log.With().Ctx(ctx).Logger()
 		})))
 	r.POST("/query", graphqlHandler())
+	r.GET("/query", graphqlHandler())
 	r.GET("/", playgroundHandler())
 	r.GET("/metrics", gin.WrapH(promhttp.Handler()))
-	r.Run()
+	return r
 }
