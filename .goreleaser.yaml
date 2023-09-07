@@ -24,6 +24,7 @@ builds:
 kos:
   - id: ko-build
     build: main
+    main: ./server
     # Platforms to build and publish.
     #
     # Default: 'linux/amd64'
