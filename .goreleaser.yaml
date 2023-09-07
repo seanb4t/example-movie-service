@@ -1,5 +1,7 @@
-# This is an example .goreleaser.yml file with some sensible defaults.
+# .goreleaser.yml
+
 # Make sure to check the documentation at https://goreleaser.com
+project_name: movie-service
 before:
   hooks:
     - go run github.com/99designs/gqlgen generate
@@ -7,12 +9,56 @@ before:
     - go generate ./...
     -
 builds:
-  - env:
+  - id: main
+    env:
       - CGO_ENABLED=0
     goos:
       - linux
       - windows
       - darwin
+    ldflags:
+      - '-s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.CommitDate}} -X main.builtBy=goreleaser'
+    mod_timestamp: "{{ .CommitTimestamp }}"
+
+kos:
+  - id: ko-build
+    build: main
+    # Platforms to build and publish.
+    #
+    # Default: 'linux/amd64'
+    platforms:
+      - linux/amd64
+      - linux/arm64
+
+    # Tag to build and push.
+    # Empty tags are ignored.
+    #
+    # Default: 'latest'
+    # Templates: allowed
+    tags:
+      - latest
+      - '{{.Tag}}'
+      - '{{if not .Prerelease}}stable{{end}}'
+
+    # Creation time given to the image
+    # in seconds since the Unix epoch as a string.
+    #
+    # Since: v1.17
+    # Templates: allowed
+    creation_time: '{{.CommitTimestamp}}'
+
+    # Creation time given to the files in the kodata directory
+    # in seconds since the Unix epoch as a string.
+    #
+    # Since: v1.17
+    # Templates: allowed
+    ko_data_creation_time: '{{.CommitTimestamp}}'
+
+    repository: ghcr.io/seanb4t/example-movie-service
+
+
+gomod:
+  proxy: true
 
 archives:
   - format: tar.gz
@@ -38,6 +84,17 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+universal_binaries:
+  - replace: true
+sboms:
+  - artifacts: archive
+metadata:
+  # Set the modified timestamp on the metadata files.
+  #
+  # Templates: allowed.
+  mod_timestamp: "{{ .CommitTimestamp }}"
+
+
 
 # The lines beneath this are called `modelines`. See `:help modeline`
 # Feel free to remove those if you don't want/use them.
