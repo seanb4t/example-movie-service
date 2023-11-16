@@ -12,9 +12,9 @@ require (
 	github.com/stretchr/testify v1.8.4
 	github.com/vektah/gqlparser/v2 v2.5.8
 	go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin v0.43.0
-	go.opentelemetry.io/otel v1.17.0
-	go.opentelemetry.io/otel/sdk v1.17.0
-	go.opentelemetry.io/otel/trace v1.17.0
+	go.opentelemetry.io/otel v1.21.0
+	go.opentelemetry.io/otel/sdk v1.21.0
+	go.opentelemetry.io/otel/trace v1.21.0
 )
 
 require (
@@ -27,7 +27,7 @@ require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/go-logr/logr v1.2.4 // indirect
+	github.com/go-logr/logr v1.3.0 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
@@ -57,12 +57,12 @@ require (
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	github.com/urfave/cli/v2 v2.25.5 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
-	go.opentelemetry.io/otel/metric v1.17.0 // indirect
+	go.opentelemetry.io/otel/metric v1.21.0 // indirect
 	golang.org/x/arch v0.4.0 // indirect
 	golang.org/x/crypto v0.12.0 // indirect
 	golang.org/x/mod v0.10.0 // indirect
 	golang.org/x/net v0.14.0 // indirect
-	golang.org/x/sys v0.11.0 // indirect
+	golang.org/x/sys v0.14.0 // indirect
 	golang.org/x/text v0.12.0 // indirect
 	golang.org/x/tools v0.9.3 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
